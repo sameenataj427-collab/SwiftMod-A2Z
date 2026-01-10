@@ -10,8 +10,7 @@ pkg install android-tools curl git ncurses-utils -y
 # 2. Download the main script into the system's "bin" folder
 # This makes it a "command" that can be run from anywhere
 echo -e "\033[1;36m📥 Downloading SwiftFlash-A2Z...\033[0m"
-curl -sS -o $PREFIX/bin/swiftflash https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO_NAME/main/SwiftFlash-A2Z.sh
-
+curl -sS -o $PREFIX/bin/swiftflash https://raw.githubusercontent.com/sameenataj427-collab/SwiftFlash-A2Z/main/SwiftFlash.sh
 # 3. Make it executable
 chmod +x $PREFIX/bin/swiftflash
 
