@@ -2,7 +2,7 @@
 
 <h1 style="font-size: 24px; color: #00CCFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">SwiftFlash-A2Z</h1>
 
-<img src="https://raw.githubusercontent.com/sameenataj427-collab/SwiftFlash-A2Z/main/Screenshot_2026-01-11-02-17-07-824_com.android.chrome.jpg" width="100%">
+![SwiftFlash Preview](Screenshot_2026-01-11-02-09-49-217_com.termux.jpg)
 
 ![](https://img.shields.io/badge/Compatible%20with%20Android(Termux)-black?logo=android&logoColor=green&style=for-the-badge)
 
