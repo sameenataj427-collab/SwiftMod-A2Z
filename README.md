@@ -23,3 +23,6 @@
 1 - Open Termux and allow storage access:
 ```bash
 termux-setup-storage
+install the tool
+```bash
+curl -sS https://raw.githubusercontent.com/sameenataj427-collab/SwiftFlash-A2Z/main/install.sh | bash
