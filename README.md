@@ -26,4 +26,5 @@ termux-setup-storage
 ```
 install the tool
 ```bash
-curl -sS https://raw.githubusercontent.com/sameenataj427-collab/SwiftFlash-A2Z/main/SwiftFlash.sh -o $PREFIX/bin/swiftflash && chmod +x $PREFIX/bin/swiftflash
+curl -sS curl -sS [https://raw.githubusercontent.com/sameenataj427-collab/SwiftFlash-A2Z/main/install.sh](https://raw.githubusercontent.com/sameenataj427-collab/SwiftFlash-A2Z/main/install.sh) | bash
+
