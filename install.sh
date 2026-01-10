@@ -3,14 +3,16 @@
 # --- SwiftFlash-A2Z Installer ---
 echo -e "\033[1;36m⚡ Installing SwiftFlash-A2Z dependencies...\033[0m"
 
-# 1. Install necessary packages (android-tools, git, etc.)
+# 1. Install necessary packages
 pkg update -y
 pkg install android-tools curl git ncurses-utils -y
 
 # 2. Download the main script into the system's "bin" folder
-# This makes it a "command" that can be run from anywhere
 echo -e "\033[1;36m📥 Downloading SwiftFlash-A2Z...\033[0m"
+
+# FIXED LINK: Ensure this matches your file name 'SwiftFlash.sh' exactly
 curl -sS https://raw.githubusercontent.com/sameenataj427-collab/SwiftFlash-A2Z/main/SwiftFlash.sh -o $PREFIX/bin/swiftflash
+
 # 3. Make it executable
 chmod +x $PREFIX/bin/swiftflash
 
