@@ -6,7 +6,7 @@ Universal Android Flashing Toolkit for Termux | Optimized for GSI, FastbootD, an
 **Developer:** Repair-A2Z | **Build:** Stable-V1.0
 
 ### 📥 Tool Installation guide 👇👇
-First, allow storage access and then run the install command:
+First, allow storage access:
 
 ```bash
 termux-setup-storage
