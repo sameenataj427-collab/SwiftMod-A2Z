@@ -1,16 +1,16 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# Define the absolute path to the script
+# Define the absolute path using your EXACT filename
 SCRIPT_PATH="$HOME/SwiftFlash-A2Z/SwiftFlash-A2Z.sh"
 ALIAS_LINE="alias swiftflash='chmod +x $SCRIPT_PATH && $SCRIPT_PATH'"
 
-# Remove any old broken aliases first
+# Remove old broken aliases to keep .bashrc clean
 sed -i '/alias swiftflash=/d' ~/.bashrc
 
-# Add the new, corrected alias to .bashrc
+# Add the corrected alias
 echo "$ALIAS_LINE" >> ~/.bashrc
 
-# Apply changes to the current session
+# Apply changes immediately
 source ~/.bashrc
 
 echo -e "\033[1;32m✅ Setup Complete!\033[0m"
