@@ -48,7 +48,7 @@ cd SwiftFlash-A2Z
 chmod +x setup.sh
 ```
 ```bash
-chmod +x SwiftFlash.sh
+chmod +x SwiftFlash-A-Z.sh
 ```
 ## Launch Tool
 ```bash
