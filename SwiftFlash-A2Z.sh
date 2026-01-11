@@ -60,7 +60,7 @@ draw_ui() {
     echo -e "${C}┌──────────────────────────────────────────────────────────┐${N}"
     echo -e "${C}│${W}  ⚡  SWIFTFLASH-A2Z : ANDROID MODDING TOOLKIT  ⚡       ${C}│${N}"
     echo -e "${C}└──────────────────────────────────────────────────────────┘${N}"
-    echo -e "   ${G}Developer: Repair-A2Z | Build: Stable-V1.1${N}"
+    echo -e "   ${G}Developer: Repair-A2Z | Build: Stable-V1.0${N}"
     echo -e "${P}────────────────────────────────────────────────────────────${N}"
     
     echo -e "  ${G}1.  ⚡ Reboot to Bootloader (ADB)"
