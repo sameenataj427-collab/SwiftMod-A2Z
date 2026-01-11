@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 # Define the absolute path to the script
-SCRIPT_PATH="$HOME/SwiftFlash-A2Z/SwiftFlash.sh"
+SCRIPT_PATH="$HOME/SwiftFlash-A2Z/SwiftFlash-A2Z.sh"
 ALIAS_LINE="alias swiftflash='chmod +x $SCRIPT_PATH && $SCRIPT_PATH'"
 
 # Remove any old broken aliases first
