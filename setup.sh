@@ -1,17 +1,18 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# Define the absolute path using your EXACT filename
-SCRIPT_PATH="$HOME/SwiftFlash-A2Z/SwiftFlash-A2Z.sh"
-ALIAS_LINE="alias swiftflash='chmod +x $SCRIPT_PATH && $SCRIPT_PATH'"
+# Define the absolute path to the actual file in your folder
+# This looks for any .sh file starting with SwiftFlash
+REAL_FILE=$(ls $HOME/SwiftFlash-A2Z/SwiftFlash*.sh | head -n 1)
+ALIAS_LINE="alias swiftflash='chmod +x $REAL_FILE && $REAL_FILE'"
 
-# Remove old broken aliases to keep .bashrc clean
+# 1. Remove all old/broken swiftflash aliases from .bashrc
 sed -i '/alias swiftflash=/d' ~/.bashrc
 
-# Add the corrected alias
+# 2. Add the correct alias using the real filename
 echo "$ALIAS_LINE" >> ~/.bashrc
 
-# Apply changes immediately
+# 3. Fix the current session immediately
 source ~/.bashrc
 
-echo -e "\033[1;32m✅ Setup Complete!\033[0m"
+echo -e "\033[1;32m✅ Setup Fixed!\033[0m"
 echo -e "\033[1;36mNow whenever you use swiftflash, the tool will launch!\033[0m"
