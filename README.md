@@ -16,11 +16,9 @@
 - [x] A/B Partition Support
 
 ## 📥 Installation:
+```Install``` [termux](https://f-droid.org/repo/com.termux_1022.apk) ```&``` [Termux-api](https://f-droid.org/repo/com.termux.api_1001.apk) ```apk Android 13 and lower Device```
 
 1 - Open Termux and allow storage access:
 ```bash
 termux-setup-storage
 ```
-install the tool
-```bash
-curl -sS https://raw.githubusercontent.com/sameenataj427-collab/SwiftFlash-A2Z/main/install.sh | bash
