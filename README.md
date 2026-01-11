@@ -41,7 +41,7 @@ pkg install ncurses-utils -y
 git clone https://github.com/sameenataj427-collab/SwiftFlash-A2Z
 ```
 ## setup The Tool
-"bash
+```bash
 cd SwiftFlash-A2Z
 ```
 ```bash
