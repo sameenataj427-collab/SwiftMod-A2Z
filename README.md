@@ -15,10 +15,43 @@
 - [x] Flash GSI ROMs
 - [x] A/B Partition Support
 
-## 📥 Installation:
+## Guid To Install The Tool 👇👇
+
+## Install Termux And Update Packages
+Install
 ```Install``` [termux](https://f-droid.org/repo/com.termux_1022.apk) ```&``` [Termux-api](https://f-droid.org/repo/com.termux.api_1001.apk) ```apk Android 13 and lower Device```
 
-1 - Open Termux and allow storage access:
 ```bash
 termux-setup-storage
 ```
+```bash
+pkg update -y && pkg upgrade -y
+```
+```bash
+pkg install android-tools -y
+```
+```bash
+pkg install git -y
+```
+```bash
+pkg install ncurses-utils -y
+```
+## Install The Tool
+```bash
+git clone https://github.com/sameenataj427-collab/SwiftFlash-A2Z
+```
+## setup The Tool
+"bash
+cd SwiftFlash-A2Z
+```
+```bash
+chmod +x setup.sh
+```
+```bash
+chmod +x SwiftFlash.sh
+```
+## Launch Tool
+```bash
+swiftflash
+```
+
