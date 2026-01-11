@@ -50,6 +50,8 @@ chmod +x setup.sh
 ```bash
 chmod +x SwiftFlash-A2Z.sh
 ```
+```bash
+./setup.sh
 ## Launch Tool
 ```bash
 swiftflash
