@@ -10,7 +10,7 @@
 
 </div>
 
-## 🚀 SwiftFlash Features:
+## 🚀 SwiftMod-A2Z Features:
 - [x] Flash Boot/Recovery/Vbmeta
 - [x] Flash GSI ROMs
 - [x] A/B Partition Support
@@ -38,23 +38,23 @@ pkg install ncurses-utils -y
 ```
 ## Install The Tool
 ```bash
-git clone https://github.com/sameenataj427-collab/SwiftFlash-A2Z
+git clone https://github.com/sameenataj427-collab/SwiftMod-A2Z
 ```
 ## setup The Tool
 ```bash
-cd SwiftFlash-A2Z
+cd SwiftMod-A2Z
 ```
 ```bash
 chmod +x setup.sh
 ```
 ```bash
-chmod +x SwiftFlash-A2Z.sh
+chmod +x SwiftMod-A2Z.sh
 ```
 ```bash
 ./setup.sh
 ```
 ## Launch Tool
 ```bash
-swiftflash
+swiftmod
 ```
 
