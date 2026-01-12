@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1 style="font-size: 24px; color: #00CCFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">SwiftFlash-A2Z</h1>
+<h1 style="font-size: 24px; color: #00CCFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">SwiftMod-A2Z</h1>
 
 <img src="https://raw.githubusercontent.com/sameenataj427-collab/SwiftFlash-A2Z/main/Screenshot_2026-01-11-02-09-49-217_com.termux.jpg" width="100%">
 
