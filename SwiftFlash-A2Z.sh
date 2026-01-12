@@ -13,6 +13,27 @@ N='\033[0m'    # Reset
 
 LOG_FILE="$HOME/.swiftflash_logs.txt"
 
+# --- Auto-Update Engine ---
+# Navigate to the script directory to run git commands
+cd "$(dirname "$0")"
+
+echo -e "${C}Checking for updates...${N}"
+if [ -d .git ]; then
+    # Silently fetch the latest data from GitHub
+    git fetch origin main &>/dev/null
+    
+    LOCAL=$(git rev-parse HEAD)
+    REMOTE=$(git rev-parse @{u})
+
+    if [ "$LOCAL" != "$REMOTE" ]; then
+        echo -e "${Y}🚀 New update found! Updating SwiftFlash-A2Z...${N}"
+        git reset --hard origin/main &>/dev/null
+        echo -e "${G}✅ Updated successfully. Restarting tool...${N}"
+        sleep 1
+        exec bash "$0" "$@"
+    fi
+fi
+
 log_action() {
     echo -e "[$(date '+%Y-%m-%d %H:%M:%S')] - $1" >> "$LOG_FILE"
 }
