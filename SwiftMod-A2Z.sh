@@ -61,11 +61,11 @@ flash_wipe_request() {
 
 draw_ui() {
     clear
-    echo -e "${C}┌──────────────────────────────────────────────────────────┐${N}"
-    echo -e "${C}│${W}  ⚡  SWIFTMOD-A2Z : ANDROID MODDING TOOLKIT  ⚡        ${C}│${N}"
-    echo -e "${C}└──────────────────────────────────────────────────────────┘${N}"
-    echo -e "   ${G}Developer: SwiftMod-A2Z | Build: Stable-V1.0${N}"
-    echo -e "${P}────────────────────────────────────────────────────────────${N}"
+    echo -e "${C}┌───────────────────────────────────────────┐${N}"
+    echo -e "${C}│${W}  ⚡ SWIFTMOD-A2Z : ANDROID MODDING ⚡  ${C}│${N}"
+    echo -e "${C}└───────────────────────────────────────────┘${N}"
+    echo -e "  ${G}Dev: SwiftMod-A2Z | Build: Stable-V1.0${N}"
+    echo -e "${P}─────────────────────────────────────────────${N}"
     echo -e "  ${G}1.  ⚡ Reboot to Bootloader (ADB)"
     echo -e "  ${G}2.  🔄 Reboot System (Fastboot)"
     echo -e "  ${G}3.  🛡️  Flash VBMETA (AVB Disable)"
@@ -78,19 +78,19 @@ draw_ui() {
     echo -e "  ${G}10. 🚀 Flash ROM via ADB Sideload (.zip)"
     echo -e "  ${C}11. 🔍 Check Fastboot Devices"
     echo -e "  ${C}12. 🔍 Check ADB Devices"
-    echo -e "  ${G}13. 📂 Flash Fastboot ROM (script needed)"
+    echo -e "  ${G}13. 📂 Flash Fastboot ROM (script)"
     echo -e "  ${B}14. ⌨️  Manual Command Execution"
-    echo -e "  ${R}15. 🧹 Format Data (Wipe All Data)"
+    echo -e "  ${R}15. 🧹 Format Data (Wipe All)"
     echo -e "  ${Y}16. 📜 View / Clear Flash Logs"
     echo -e "  ${R}17. 🔓 Unlock Bootloader (No Xiaomi)"
     echo -e "  ${C}18. 🔄 Switch Active Slot (A/B)${N}"
     echo -e "  ${R}0.  ❌ Exit Tool${N}"
     
-    # --- FIXED BOX SECTION ---
-    echo -e "\n${C}┌──────────────────────────────────────────────────────────┐${N}"
-    echo -e "${C}│${N} ${W}Enter your choice [0-18] below:${N}                        ${C}│${N}"
-    echo -e "${C}└───────────────────────────┬──────────────────────────────┘${N}"
-    echo -e "${P}                            └╼╼${N}"
+    # --- REDUCED WIDTH BOX (Prevents Floating L) ---
+    echo -e "\n${C}┌───────────────────────────────────────────┐${N}"
+    echo -e "${C}│${N} ${W}Enter choice [0-18] below:${N}              ${C}│${N}"
+    echo -e "${C}└───────────────┬───────────────────────────┘${N}"
+    echo -e "${P}                └╼╼${N}"
 }
 
 check_return() {
