@@ -86,10 +86,10 @@ draw_ui() {
     echo -e "  ${C}18. 🔄 Switch Active Slot (A/B)${N}"
     echo -e "  ${R}0.  ❌ Exit Tool${N}"
     
-    # --- Restored Outline for Choice Section ---
-    echo -e "${C}┌──────────────────────────────────────────────────┐${N}"
-    echo -e "${C}│${W} Enter choice [0-18] below:                      ${C}│${N}"
-    echo -e "${C}└──────────────────────────────────────────────────┘${N}"
+    # --- CLEAN DOUBLE-LINE BOX WITHOUT MAGENTA ---
+    echo -e "${C}╔══════════════════════════════════════════════════════════╗${N}"
+    echo -e "${C}║${W} Enter your choice [0-18] below:                          ${C}║${N}"
+    echo -e "${C}╚══════════════════════════════════════════════════════════╝${N}"
 }
 
 check_return() {
@@ -122,33 +122,3 @@ while true; do
         6)
             echo -e "${P}📁 Provide Super path:${N}"; read -e spath
             if ! validate_size "$spath" "super"; then check_return; continue; fi
-            echo -n -e "${Y}🔢 Chunk Size MB (Default 100): ${N}"; read csize
-            [[ -z "$csize" ]] && csize="100"
-            echo -e "${P}🛡️  Provide VBMETA path:${N}"; read -e vb
-            flash_wipe_request && do_wipe="y" || do_wipe="n"
-            fastboot -v -S "${csize}M" flash super "$spath"
-            fastboot --disable-verity --disable-verification flash vbmeta "$vb"
-            [[ "$do_wipe" == "y" ]] && fastboot erase userdata
-            log_action "Super Flash: $spath"
-            check_return ;;
-        7) echo -e "${P}Boot path:${N}"; read -e b; fastboot flash boot "$b"; check_return ;;
-        8) echo -e "${P}Recovery path:${N}"; read -e r; fastboot flash recovery "$r"; check_return ;;
-        9) echo -e "${P}Init_Boot path:${N}"; read -e ib; fastboot flash init_boot "$ib"; check_return ;;
-        10) echo -e "${P}Zip path:${N}"; read -e z; adb sideload "$z"; check_return ;;
-        11) fastboot devices; check_return ;;
-        12) adb devices; check_return ;;
-        13) echo -e "${Y}⚠️ Script required in folder.${N}"; check_return ;;
-        14) while true; do echo -n -e "${C}SwiftMod > ${N}"; read -e m; [[ "$m" == "exit" ]] && break; eval "$m"; done ;;
-        15) fastboot erase userdata && fastboot erase metadata; check_return ;;
-        16) tail -n 15 "$LOG_FILE"; check_return ;;
-        17) 
-            echo -n -e "${Y}Start Unlock? (y/n): ${N}"; read lock3
-            if [[ "$lock3" == "y" ]]; then
-                fastboot flashing unlock || fastboot oem unlock
-            fi
-            check_return ;;
-        18) fastboot getvar current-slot; echo -n -e "${P}Switch slot? (y/n): ${N}"; read s; [[ "$s" == "y" ]] && fastboot set_active other; check_return ;;
-        0) exit 0 ;;
-        *) echo -e "${R}Invalid Choice!${N}" ; sleep 1 ;;
-    esac
-done
