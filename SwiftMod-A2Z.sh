@@ -111,22 +111,34 @@ while true; do
             echo -e "${C}╔══════════════════════════════════════════════════════╗${N}"
             echo -e "${C}║${W}        🔥 ULTIMATE SYSTEM DIAGNOSTIC 🔥              ${C}║${N}"
             echo -e "${C}╚══════════════════════════════════════════════════════╝${N}"
-            echo -e "${Y}--- [ HARDWARE ENGINE ] ---${N}"
-            echo -e "${W}Brand      :${G} $(getprop ro.product.brand)${N}"
-            echo -e "${W}Model      :${G} $(getprop ro.product.model)${N}"
-            echo -e "${W}Board      :${G} $(getprop ro.product.board)${N}"
+            
+            # --- Hardware ---
+            echo -e "${Y}--- [ HARDWARE & ENGINE ] ---${N}"
             echo -e "${W}Processor  :${G} $(getprop ro.soc.model)${N}"
             echo -e "${W}Architecture:${G} $(getprop ro.product.cpu.abi)${N}"
+            [ -x "$(command -v su)" ] && echo -e "${W}Root Status:${G} YES (Rooted)${N}" || echo -e "${W}Root Status:${R} NO (Unrooted)${N}"
             
-            echo -e "\n${Y}--- [ SOFTWARE STACK ] ---${N}"
-            echo -e "${W}Android Ver:${G} $(getprop ro.build.version.release)${N}"
-            echo -e "${W}Security   :${G} $(getprop ro.build.version.security_patch)${N}"
-            echo -e "${W}Kernel     :${G} $(uname -r)${N}"
+            # --- Power & RAM ---
+            echo -e "\n${Y}--- [ POWER & MEMORY ] ---${N}"
+            if command -v termux-battery-status &> /dev/null; then
+                BATT=$(termux-battery-status)
+                echo -e "${W}Battery    :${G} $(echo $BATT | grep -oP '(?<="percentage": )[0-9]+')%${N}"
+                echo -e "${W}Health     :${G} $(echo $BATT | grep -oP '(?<="health": ")[^"]+') (Temp: $(echo $BATT | grep -oP '(?<="temperature": )[0-9.]+')°C)${N}"
+            else
+                echo -e "${W}Battery    :${R} API Not Found${N}"
+            fi
+            free -h | awk 'NR==2 {print "RAM Usage  : Used: "$3" / Total: "$2}'
             
+            # --- Connectivity ---
+            echo -e "\n${Y}--- [ NETWORK STATUS ] ---${N}"
+            IP_ADDR=$(ip route get 1.1.1.1 2>/dev/null | awk '{print $7}')
+            [ -z "$IP_ADDR" ] && echo -e "${W}Local IP   :${R} Offline${N}" || echo -e "${W}Local IP   :${G} $IP_ADDR${N}"
+            
+            # --- Storage ---
             echo -e "\n${Y}--- [ STORAGE STATUS ] ---${N}"
-            df -h /data | awk 'NR==2 {print "Total Space: "$2" | Used: "$3" | Available: "$4}'
+            df -h /data | awk 'NR==2 {print "Internal   : Free "$4" of "$2" total"}'
             
-            echo -e "\n${P}>> Optimized by Mubarak Pasha <<${N}"
+            echo -e "\n${P}>> Built by Mubarak Pasha for Repair A2Z <<${N}"
             check_return ;;
         0) exit 0 ;;
         *) echo -e "${R}Invalid!${N}" ; sleep 1 ;;
