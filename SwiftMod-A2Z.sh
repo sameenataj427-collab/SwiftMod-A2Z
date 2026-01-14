@@ -16,7 +16,6 @@ LOG_FILE="$HOME/.swiftmod_logs.txt"
 # --- Stealth Auto-Update Engine ---
 cd "$(dirname "$0")"
 if [ -d .git ]; then
-    # No name displayed here so friends don't see it
     git fetch origin main &>/dev/null
     LOCAL=$(git rev-parse HEAD)
     REMOTE=$(git rev-parse @{u})
@@ -112,17 +111,21 @@ while true; do
             echo -e "${C}╔══════════════════════════════════════════════════════╗${N}"
             echo -e "${C}║${W}        🔥 ULTIMATE SYSTEM DIAGNOSTIC 🔥              ${C}║${N}"
             echo -e "${C}╚══════════════════════════════════════════════════════╝${N}"
-            echo -e "${Y}--- HARDWARE ENGINE ---${N}"
+            echo -e "${Y}--- [ HARDWARE ENGINE ] ---${N}"
             echo -e "${W}Brand      :${G} $(getprop ro.product.brand)${N}"
             echo -e "${W}Model      :${G} $(getprop ro.product.model)${N}"
+            echo -e "${W}Board      :${G} $(getprop ro.product.board)${N}"
             echo -e "${W}Processor  :${G} $(getprop ro.soc.model)${N}"
             echo -e "${W}Architecture:${G} $(getprop ro.product.cpu.abi)${N}"
-            echo -e "\n${Y}--- SOFTWARE STACK ---${N}"
+            
+            echo -e "\n${Y}--- [ SOFTWARE STACK ] ---${N}"
             echo -e "${W}Android Ver:${G} $(getprop ro.build.version.release)${N}"
             echo -e "${W}Security   :${G} $(getprop ro.build.version.security_patch)${N}"
             echo -e "${W}Kernel     :${G} $(uname -r)${N}"
-            echo -e "\n${Y}--- STORAGE STATUS ---${N}"
+            
+            echo -e "\n${Y}--- [ STORAGE STATUS ] ---${N}"
             df -h /data | awk 'NR==2 {print "Total Space: "$2" | Used: "$3" | Available: "$4}'
+            
             echo -e "\n${P}>> Optimized by Mubarak Pasha <<${N}"
             check_return ;;
         0) exit 0 ;;
