@@ -13,10 +13,25 @@ N='\033[0m'    # Reset
 
 LOG_FILE="$HOME/.swiftmod_logs.txt"
 
+# --- Stealth Auto-Update Engine ---
+cd "$(dirname "$0")"
+if [ -d .git ]; then
+    # No name displayed here so friends don't see it
+    git fetch origin main &>/dev/null
+    LOCAL=$(git rev-parse HEAD)
+    REMOTE=$(git rev-parse @{u})
+    if [ "$LOCAL" != "$REMOTE" ]; then
+        echo -e "${Y}🚀 System update detected. Synchronizing...${N}"
+        git reset --hard origin/main &>/dev/null
+        sleep 1
+        exec bash "$0" "$@"
+    fi
+fi
+
 # --- Matrix Loading Animation ---
 loading_flex() {
     clear
-    echo -e "${G}Initializing Mubarak Pasha's Private Engine...${N}"
+    echo -e "${G}Initializing Private Engine...${N}"
     sleep 0.2
     for i in {1..15}; do
         echo -e "${G}$((RANDOM%2)) $((RANDOM%2)) $((RANDOM%2)) $((RANDOM%2)) $((RANDOM%2)) $((RANDOM%2)) $((RANDOM%2)) $((RANDOM%2)) $((RANDOM%2)) $((RANDOM%2))${N}"
@@ -25,20 +40,6 @@ loading_flex() {
     echo -e "${C}✅ SECURITY CLEARANCE GRANTED.${N}"
     sleep 0.5
 }
-
-# --- Auto-Update Engine ---
-cd "$(dirname "$0")"
-if [ -d .git ]; then
-    git fetch origin main &>/dev/null
-    LOCAL=$(git rev-parse HEAD)
-    REMOTE=$(git rev-parse @{u})
-    if [ "$LOCAL" != "$REMOTE" ]; then
-        echo -e "${Y}🚀 Mubarak, an update is ready! Downloading...${N}"
-        git reset --hard origin/main &>/dev/null
-        sleep 1
-        exec bash "$0" "$@"
-    fi
-fi
 
 draw_ui() {
     clear
@@ -53,7 +54,6 @@ draw_ui() {
     echo -e "${W} 📱 MODEL: ${G}$MODEL ${W}| ⚙️ CPU: ${G}$CPU ${W}| 🤖 ANDROID: ${G}$OS${N}"
     echo -e "${P}────────────────────────────────────────────────────────────${N}"
     
-    # Single Column Vertical Layout
     echo -e "  ${G}1.  ⚡ Reboot to Bootloader (ADB)"
     echo -e "  ${G}2.  🔄 Reboot System (Fastboot)"
     echo -e "  ${G}3.  🛡️  Flash VBMETA (AVB Disable)"
@@ -76,12 +76,12 @@ draw_ui() {
     echo -e "  ${R}0.  ❌ Exit Tool${N}"
     
     echo -e "\n${C}╔══════════════════════════════════════════════════════════╗${N}"
-    echo -e "${C}║${W} Enter choice [0-19] below, Mubarak:                      ${C}║${N}"
+    echo -e "${C}║${W} Enter choice [0-19] below:                               ${C}║${N}"
     echo -e "${C}╚══════════════════════════════════════════════════════════╝${N}"
 }
 
 check_return() {
-    echo -n -e "\n${Y}Return to menu, Mubarak? (y/n): ${N}"
+    echo -n -e "\n${Y}Return to menu? (y/n): ${N}"
     read return_choice
     [[ "$return_choice" != "y" ]] && exit 0
 }
@@ -105,12 +105,12 @@ while true; do
         10) echo -e "${P}Zip path:${N}"; read -e z; adb sideload "$z"; check_return ;;
         11) fastboot devices; check_return ;;
         12) adb devices; check_return ;;
-        14) while true; do echo -n -e "${C}Mubarak-Pasha > ${N}"; read -e m; [[ "$m" == "exit" ]] && break; eval "$m"; done ;;
+        14) while true; do echo -n -e "${C}SwiftMod > ${N}"; read -e m; [[ "$m" == "exit" ]] && break; eval "$m"; done ;;
         15) fastboot erase userdata && fastboot erase metadata; check_return ;;
         19) 
             clear
             echo -e "${C}╔══════════════════════════════════════════════════════╗${N}"
-            echo -e "${C}║${W}        🔥 MUBARAK'S DEEP SYSTEM DIAGNOSTIC 🔥        ${C}║${N}"
+            echo -e "${C}║${W}        🔥 ULTIMATE SYSTEM DIAGNOSTIC 🔥              ${C}║${N}"
             echo -e "${C}╚══════════════════════════════════════════════════════╝${N}"
             echo -e "${Y}--- HARDWARE ENGINE ---${N}"
             echo -e "${W}Brand      :${G} $(getprop ro.product.brand)${N}"
@@ -123,7 +123,7 @@ while true; do
             echo -e "${W}Kernel     :${G} $(uname -r)${N}"
             echo -e "\n${Y}--- STORAGE STATUS ---${N}"
             df -h /data | awk 'NR==2 {print "Total Space: "$2" | Used: "$3" | Available: "$4}'
-            echo -e "\n${P}>> Built by Mubarak Pasha for Repair A2Z <<${N}"
+            echo -e "\n${P}>> Optimized by Mubarak Pasha <<${N}"
             check_return ;;
         0) exit 0 ;;
         *) echo -e "${R}Invalid!${N}" ; sleep 1 ;;
