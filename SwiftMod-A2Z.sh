@@ -71,7 +71,7 @@ draw_ui() {
     echo -e "  ${Y}16. 📜 View / Clear Flash Logs"
     echo -e "  ${R}17. 🔓 Unlock Bootloader (No Xiaomi)"
     echo -e "  ${C}18. 🔄 Switch Active Slot (A/B)${N}"
-    echo -e "  ${P}19. 🔥 ULTIMATE SYSTEM FLEX (Show Friends)${N}"
+    echo -e "  ${P}19. 🔥 Device Hardware Scan${N}"
     echo -e "  ${R}0.  ❌ Exit Tool${N}"
     
     echo -e "\n${C}╔══════════════════════════════════════════════════════════╗${N}"
