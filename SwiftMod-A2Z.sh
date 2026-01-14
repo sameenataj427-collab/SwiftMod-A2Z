@@ -16,14 +16,12 @@ LOG_FILE="$HOME/.swiftmod_logs.txt"
 # --- Auto-Update Engine ---
 cd "$(dirname "$0")"
 if [ -d .git ]; then
-    echo -e "${C}Checking for updates...${N}"
     git fetch origin main &>/dev/null
     LOCAL=$(git rev-parse HEAD)
     REMOTE=$(git rev-parse @{u})
     if [ "$LOCAL" != "$REMOTE" ]; then
         echo -e "${Y}🚀 Syncing Private Updates...${N}"
         git reset --hard origin/main &>/dev/null
-        echo -e "${G}✅ Updated. Restarting...${N}"
         sleep 1
         exec bash "$0" "$@"
     fi
@@ -36,15 +34,24 @@ draw_ui() {
     echo -e "${C}└──────────────────────────────────────────────────────────┘${N}"
     echo -e "   ${G}Redmi Note 10S | Galaxy A04 | Hot 30 5G | Mi 10i${N}"
     echo -e "${P}────────────────────────────────────────────────────────────${N}"
-    echo -e "  ${G}1.  ⚡ Reboot Bootloader      10. 🚀 ADB Sideload (.zip)"
-    echo -e "  ${G}2.  🔄 Reboot System          11. 🔍 Fastboot Check"
-    echo -e "  ${G}3.  🛡️  Flash VBMETA           12. 🔍 ADB Check"
-    echo -e "  ${G}4.  🌀 Reboot FastbootD       13. 📂 Flash FB ROM"
-    echo -e "  ${G}5.  📱 Flash GSI Image        14. ⌨️  Manual Command"
-    echo -e "  ${G}6.  📦 Flash Super.img        15. 🧹 Format / Wipe"
-    echo -e "  ${G}7.  👞 Flash Boot.img         16. 📜 View/Clear Logs"
-    echo -e "  ${G}8.  🛠️  Flash Recovery.img     17. 🔓 Unlock Bootloader"
-    echo -e "  ${B}9.  🚀 Flash Init_Boot.img    18. 🔄 Switch Slot (A/B)${N}"
+    echo -e "  ${G}1.  ⚡ Reboot to Bootloader (ADB)"
+    echo -e "  ${G}2.  🔄 Reboot System (Fastboot)"
+    echo -e "  ${G}3.  🛡️  Flash VBMETA (AVB Disable)"
+    echo -e "  ${G}4.  🌀 Reboot to FastbootD (fastboot)"
+    echo -e "  ${G}5.  📱 Flash GSI / System Image"
+    echo -e "  ${G}6.  📦 Flash Super.img"
+    echo -e "  ${G}7.  👞 Flash Boot.img"
+    echo -e "  ${G}8.  🛠️  Flash Recovery.img"
+    echo -e "  ${B}9.  🚀 Flash Init_Boot.img${N}"
+    echo -e "  ${G}10. 🚀 Flash ROM via ADB Sideload (.zip)"
+    echo -e "  ${C}11. 🔍 Check Fastboot Devices"
+    echo -e "  ${C}12. 🔍 Check ADB Devices"
+    echo -e "  ${G}13. 📂 Flash Fastboot ROM (script needed)"
+    echo -e "  ${B}14. ⌨️  Manual Command Execution"
+    echo -e "  ${R}15. 🧹 Format Data (Wipe All Data)"
+    echo -e "  ${Y}16. 📜 View / Clear Flash Logs"
+    echo -e "  ${R}17. 🔓 Unlock Bootloader (No Xiaomi)"
+    echo -e "  ${C}18. 🔄 Switch Active Slot (A/B)${N}"
     echo -e "  ${R}0.  ❌ Exit Tool${N}"
     
     echo -e "\n${C}╔══════════════════════════════════════════════════════════╗${N}"
