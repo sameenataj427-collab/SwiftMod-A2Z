@@ -13,7 +13,7 @@ N='\033[0m'    # Reset
 
 LOG_FILE="$HOME/.swiftmod_logs.txt"
 
-# --- Matrix Loading Animation (Flex Feature) ---
+# --- Matrix Loading Animation ---
 loading_flex() {
     clear
     echo -e "${G}Initializing Mubarak Pasha's Private Engine...${N}"
@@ -40,26 +40,20 @@ if [ -d .git ]; then
     fi
 fi
 
-log_action() {
-    echo -e "[$(date '+%Y-%m-%d %H:%M:%S')] - $1" >> "$LOG_FILE"
-}
-
 draw_ui() {
     clear
-    # --- Professional Header ---
     echo -e "${C}┌──────────────────────────────────────────────────────────┐${N}"
     echo -e "${C}│${W}  ⚡  ${BOLD}SWIFTMOD-A2Z : PRIVATE MASTER STATION${N}${C}           │${N}"
     echo -e "${C}│${P}  Lead Developer: Mubarak Pasha                         ${C}│${N}"
     echo -e "${C}└──────────────────────────────────────────────────────────┘${N}"
     
-    # --- Hardware Flex Bar (Shows off your phone specs) ---
     MODEL=$(getprop ro.product.model)
     CPU=$(getprop ro.product.board)
     OS=$(getprop ro.build.version.release)
     echo -e "${W} 📱 MODEL: ${G}$MODEL ${W}| ⚙️ CPU: ${G}$CPU ${W}| 🤖 ANDROID: ${G}$OS${N}"
     echo -e "${P}────────────────────────────────────────────────────────────${N}"
     
-    # --- Single Column Options ---
+    # Single Column Vertical Layout
     echo -e "  ${G}1.  ⚡ Reboot to Bootloader (ADB)"
     echo -e "  ${G}2.  🔄 Reboot System (Fastboot)"
     echo -e "  ${G}3.  🛡️  Flash VBMETA (AVB Disable)"
@@ -72,16 +66,15 @@ draw_ui() {
     echo -e "  ${G}10. 🚀 Flash ROM via ADB Sideload (.zip)"
     echo -e "  ${C}11. 🔍 Check Fastboot Devices"
     echo -e "  ${C}12. 🔍 Check ADB Devices"
-    echo -e "  ${G}13. 📂 Flash Fastboot ROM (script needed)"
+    echo -e "  ${G}13. 📂 Flash Fastboot ROM (script)"
     echo -e "  ${B}14. ⌨️  Manual Command Execution"
     echo -e "  ${R}15. 🧹 Format Data (Wipe All Data)"
     echo -e "  ${Y}16. 📜 View / Clear Flash Logs"
     echo -e "  ${R}17. 🔓 Unlock Bootloader (No Xiaomi)"
     echo -e "  ${C}18. 🔄 Switch Active Slot (A/B)${N}"
-    echo -e "  ${P}19. 🕵️  Deep Hardware Scan (FLEX)${N}"
+    echo -e "  ${P}19. 🔥 ULTIMATE SYSTEM FLEX (Show Friends)${N}"
     echo -e "  ${R}0.  ❌ Exit Tool${N}"
     
-    # --- Mubarak's Choice Box ---
     echo -e "\n${C}╔══════════════════════════════════════════════════════════╗${N}"
     echo -e "${C}║${W} Enter choice [0-19] below, Mubarak:                      ${C}║${N}"
     echo -e "${C}╚══════════════════════════════════════════════════════════╝${N}"
@@ -93,7 +86,6 @@ check_return() {
     [[ "$return_choice" != "y" ]] && exit 0
 }
 
-# Run the intro once per launch
 loading_flex
 
 while true; do
@@ -113,15 +105,25 @@ while true; do
         10) echo -e "${P}Zip path:${N}"; read -e z; adb sideload "$z"; check_return ;;
         11) fastboot devices; check_return ;;
         12) adb devices; check_return ;;
-        13) echo -e "${Y}Ensure flash-all.sh is in directory.${N}"; check_return ;;
         14) while true; do echo -n -e "${C}Mubarak-Pasha > ${N}"; read -e m; [[ "$m" == "exit" ]] && break; eval "$m"; done ;;
         15) fastboot erase userdata && fastboot erase metadata; check_return ;;
-        16) [[ -f "$LOG_FILE" ]] && tail -n 10 "$LOG_FILE" || echo "No logs."; check_return ;;
-        17) fastboot flashing unlock || fastboot oem unlock; check_return ;;
-        18) fastboot set_active other; check_return ;;
         19) 
-            echo -e "${C}--- DEEP SCAN (MUBARAK'S PRIVATE DATA) ---${N}"
-            getprop | grep -E "model|brand|board|serial|cpu|platform"
+            clear
+            echo -e "${C}╔══════════════════════════════════════════════════════╗${N}"
+            echo -e "${C}║${W}        🔥 MUBARAK'S DEEP SYSTEM DIAGNOSTIC 🔥        ${C}║${N}"
+            echo -e "${C}╚══════════════════════════════════════════════════════╝${N}"
+            echo -e "${Y}--- HARDWARE ENGINE ---${N}"
+            echo -e "${W}Brand      :${G} $(getprop ro.product.brand)${N}"
+            echo -e "${W}Model      :${G} $(getprop ro.product.model)${N}"
+            echo -e "${W}Processor  :${G} $(getprop ro.soc.model)${N}"
+            echo -e "${W}Architecture:${G} $(getprop ro.product.cpu.abi)${N}"
+            echo -e "\n${Y}--- SOFTWARE STACK ---${N}"
+            echo -e "${W}Android Ver:${G} $(getprop ro.build.version.release)${N}"
+            echo -e "${W}Security   :${G} $(getprop ro.build.version.security_patch)${N}"
+            echo -e "${W}Kernel     :${G} $(uname -r)${N}"
+            echo -e "\n${Y}--- STORAGE STATUS ---${N}"
+            df -h /data | awk 'NR==2 {print "Total Space: "$2" | Used: "$3" | Available: "$4}'
+            echo -e "\n${P}>> Built by Mubarak Pasha for Repair A2Z <<${N}"
             check_return ;;
         0) exit 0 ;;
         *) echo -e "${R}Invalid!${N}" ; sleep 1 ;;
